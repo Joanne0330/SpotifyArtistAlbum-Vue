@@ -1,17 +1,43 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div v-if="auth !== null">
+      <Search v-bind:auth="auth"/>
+      <p>{{auth}}</p>
+    </div>
+    <div v-else>
+      <Home />
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Home from './components/Home.vue';
+import Search from './components/Search.vue'
+import axios from 'axios';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Home,
+    Search
+  },
+  data() {
+    return {
+      auth: null
+
+    }
+  },
+  mounted () {
+
+    //  axios.get('http://localhost:5000/auth/current-session').then(({data}) => {
+
+    //    console.log({data})
+    //   this.auth = data;
+    // })
+    axios.get('http://localhost:5000/auth/current-session')
+      .then(data => this.auth = data)
+
+      console.log(this.auth)
   }
 }
 </script>
