@@ -29,15 +29,9 @@ export default {
   },
   mounted () {
 
-    //  axios.get('http://localhost:5000/auth/current-session').then(({data}) => {
-
-    //    console.log({data})
-    //   this.auth = data;
-    // })
     axios.get('http://localhost:5000/auth/current-session')
-      .then(data => this.auth = data)
+      .then(data => this.auth = data)  // this returns a long object item, not a long string of token
 
-      console.log(this.auth)
   }
 }
 </script>
