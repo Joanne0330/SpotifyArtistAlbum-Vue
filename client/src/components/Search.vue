@@ -40,10 +40,10 @@ export default {
             const name = this.name;
             // const auth = this.auth;
             // console.log(auth)
-            const res = await axios.get(`http://localhost:5000/auth/search/BQAdTWzqIUHckx_FIA3VfI1NzdiY9mUthoWT7yUUO6D9DVzqKLPCdZDfeYCXdZt9DVe-zTDzvJtBybEYltzgYh-OHC0JHh7C6Pdd8MSfqeX0ttcsfoOcvWbh6RORaFAyyV1SpYjPFvgfpsEsmA/${name}`)
+            const res = await axios.get(`http://localhost:5000/auth/search/BQC6u7JD91gdFgEF54l7Jj7j-TF0aOZYVmvIuSOIwrqtd3IeAny1xGKr94F_ok1rJIhqAnQGmAt2x-MLu6fGKLNpbbe_eK4qmGg7EETdho_Ob5n2sZrzQ34LWRpj3g_PHi3q54Gbcxf-H2lzRA/${name}`)
             this.albumData = res.data    
 
-            
+            this.name = '';
         }
     }
 }

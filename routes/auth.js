@@ -55,7 +55,7 @@ router.get('/callback', async (req, res) => {
     };
 
     req.session.jwt = jwt.sign(sessionJWTObject, process.env.JWT_SECRET_KEY)
-    return res.redirect('/');
+    return res.redirect('http://localhost:8080/');
 
 });
 
@@ -80,7 +80,7 @@ router.get('/logout', (req, res) => {
     try {
         req.session = null;
         res.redirect(
-            `/`
+            `http://localhost:8080`
         );
         
     } catch (err) {

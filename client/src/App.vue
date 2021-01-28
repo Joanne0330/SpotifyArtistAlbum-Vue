@@ -16,7 +16,7 @@ import Search from './components/Search.vue'
 import axios from 'axios';
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     Home,
     Search
@@ -24,15 +24,19 @@ export default {
   data() {
     return {
       auth: null
-
     }
   },
-  mounted () {
-
-    axios.get('http://localhost:5000/auth/current-session')
-      .then(data => this.auth = data)  // this returns a long object item, not a long string of token
-
-  }
+  methods: {
+    findToken: async function() {
+      // axios.get('http://localhost:5000/auth/current-session')
+      //   .then(res => this.auth = res)  // this returns a long object item, not a long string of token
+      const data = await axios.get('http://localhost:5000/auth/current-session')
+      this.auth = data;
+    }
+  },
+  created: function() {
+    this.findToken();
+  },
 }
 </script>
 
