@@ -59,9 +59,9 @@ router.get('/callback', async (req, res) => {
 
 });
 
-router.get('/current-session', (req, res) => {
+router.get('/current-session', async (req, res) => {
     try {
-        jwt.verify(req.session.jwt, process.env.JWT_SECRET_KEY, (err, decodedToken) => {
+        await jwt.verify(req.session.jwt, process.env.JWT_SECRET_KEY, (err, decodedToken) => {
             if (err || !decodedToken) {
                 res.send(false);
             } else {
