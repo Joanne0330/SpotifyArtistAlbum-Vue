@@ -26,19 +26,16 @@ export default {
       auth: null
     }
   },
-  methods: {
-    findToken: async function() {
-      await axios.get('http://localhost:5000/auth/current-session')
-        .then(res => this.auth = res)
-        .catch(err => console.error(err))  // this returns a long object item, not a long st  ring of token
+  async beforeMount() {
+    // axios.get('http://localhost:5000/auth/current-session')
+    //   .then(res => this.auth = res)
+    //   .catch(err => console.error(err))  // this returns a long object item, not a long st  ring of token
+    const data = await axios.get(`http://localhost:5000/auth/current-session`)
+    this.auth = data;
+    
+    console.log(this.auth);
 
-      // const data = axios.get(`http://localhost:5000/auth/current-session`)
-      // this.auth = data;
-      console.log(this.auth);
-    }
-  },
-  created: function() {
-    this.findToken();
+    
   },
 }
 </script>
