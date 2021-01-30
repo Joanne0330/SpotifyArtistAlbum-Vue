@@ -6,11 +6,21 @@
         <br>
          <form @submit="searchAlbums">
             <!-- to pass input value to state, use v-model -->
-            <input class="input-box" type="text" v-model="name" name="name" placeholder="Artist's name here...">
-            <input type="submit" value="Submit" class="btn">
+            <input 
+                class="input-box" 
+                type="text" 
+                v-model="name" 
+                name="name" 
+                placeholder="Artist's name here..."
+            >{{' '}}
+            <input 
+                class="btn"
+                type="submit" 
+                value="Submit" 
+            >
         </form>
         <div v-bind:key="album.id" v-for="album in albumData">
-            <div>
+            <div class="cards-layout">
                 <b-card
                     class="card"
                     :title="album.name"
@@ -40,7 +50,7 @@ export default {
         searchAlbums: async function (e) {
             e.preventDefault();
             const name = this.name;
-            const auth = 'BQAd0v3I_ZvjDd7cG_EmUIG78IV0qORxWX0vPDCgIB5J33P3DIwOJAN3kHBVbu-RijgGF71QTmhtLjSF1GyQYExEBBYrD3glYFaL_xEQolsMvL0qslGnPWmMa--jRnK-s7Md76SA0OY9EW095A';
+            const auth = 'BQAlLB_0hTf849Sn6j7iimMcdRwFBROlTt7kflD-Sqch3c3Xe6IP_AgETSOTHP1Wjf21VGTFNnVXAbM-QU2UndBTucATWfXU7joBa_S5eY1JQ3hBcFpDGcCZdpYCspMyXXLtIDLgi1MMjaYNfQ';
             // console.log(auth)
             const res = await axios.get(`http://localhost:5000/auth/search/${auth}/${name}`)
             this.albumData = res.data    
@@ -50,3 +60,26 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+    .card {
+        max-width: 30rem; 
+        max-height: 35rem; 
+        padding: 5rem; 
+        margin: 2rem
+    }
+
+    .cards-layout {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+
+    .btn {
+        border: solid;
+        border-color: cadetblue;
+    }
+
+
+</style>

@@ -26,7 +26,7 @@ export default {
       auth: null
     }
   },
-  async beforeMount() {
+  async created() {
     // axios.get('http://localhost:5000/auth/current-session')
     //   .then(res => this.auth = res)
     //   .catch(err => console.error(err))  // this returns a long object item, not a long st  ring of token
